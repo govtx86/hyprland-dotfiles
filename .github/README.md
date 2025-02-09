@@ -40,9 +40,9 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/p
 ```
 
 
-Clone the repo
+### Clone the repo
 ```
-git clone --bare https://github.com/govtx86/hyprland-dotfiles.git $HOME/.dotfiles
+git clone --bare https://github.com/govtx86/hyprland-dotfiles.git $HOME/.cfg
 ```
 Add the alias (in zsh shell)
 ```
