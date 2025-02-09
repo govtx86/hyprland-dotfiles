@@ -1,0 +1,106 @@
+* {
+    font-family: Ubuntu Nerd Font;
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+}
+
+window#waybar {
+    background-color: rgba(40, 40, 40, 0.8);
+    color: #ebdbb2;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.empty #window {
+    color: transparent;
+}
+
+#workspaces button {
+    padding: 5px;
+    border-radius: 0;
+    color: #15F5BA;
+}
+
+#workspaces button:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+#workspaces button.focused {
+    color: #F0F3FF;
+}
+
+#workspaces button.active {
+    color: #F0F3FF;
+}
+
+#workspaces button.urgent {
+    background-color: #eb4d4b;
+}
+
+#clock,
+#battery,
+#backlight,
+#network,
+#pulseaudio,
+#custom-power,
+#bluetooth {
+    margin: 0 5px 0;
+}
+
+#window,
+#workspaces {
+    margin: 0 4px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left>widget:first-child>#workspaces {
+    margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right>widget:last-child>#workspaces {
+    margin-right: 0;
+}
+
+#window,
+#pulseaudio,
+#bluetooth,
+#backlight
+{
+    color: #836FFF;
+}
+
+#clock,
+#network,
+#battery,
+#custom-power
+{
+    color: #15F5BA;
+}
+
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+#battery.critical:not(.charging) {
+    color: #f53c3c;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#network.disconnected {
+    color: #f53c3c;
+}
+
+#pulseaudio.muted {
+    color: #90b1b1;
+}

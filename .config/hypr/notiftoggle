@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ "$(dunstctl is-paused)" == "true" ]; then
+	dunstctl set-paused false
+	dunstify -t 2000 "Notifications Unpaused" -a "Notification"
+else
+	dunstify -t 2000 "Notifications Paused" -a "Notification"
+	sleep 2
+	dunstctl set-paused true
+fi

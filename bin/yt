@@ -1,0 +1,11 @@
+#!/bin/bash
+
+sterm="";
+i=1;
+for arg in "$@" 
+do
+    sterm=$sterm+$arg;
+    i=$((i + 1));
+done
+
+firefox --new-tab "https://www.youtube.com/results?search_query=$sterm"

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+wp1="/home/govind/.config/wallpapers/mountain.jpg"
+wp2="/home/govind/.config/wallpapers/0xxx.jpg"
+
+loaded=$(hyprctl hyprpaper listloaded)
+echo $loaded
+if [ "$loaded" == $wp1 ]; then
+    echo $(hyprctl hyprpaper reload ,"$wp2")
+    echo $(hyprctl hyprpaper wallpaper "eDP-1,$wp2")
+    echo $(hyprctl hyprpaper unload ,"$wp1")
+else
+    echo $(hyprctl hyprpaper reload ,"$wp1")
+    echo $(hyprctl hyprpaper wallpaper "eDP-1,$wp1")
+    echo $(hyprctl hyprpaper unload ,"$wp2")
+fi

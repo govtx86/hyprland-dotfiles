@@ -1,0 +1,111 @@
+{
+    "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 33, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 4, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/window"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "pulseaudio",
+        "network",
+        "bluetooth",
+        "battery",
+        "backlight",
+        "custom/power"
+    ],
+    "hyprland/window": {
+		"format": "  >> {}",
+		"max-length": 50
+	},
+    "bluetooth": {
+        "on-click": "blueman-manager",
+        "format": " {status}",
+        "format-connected": " Connected",
+        "tooltip-format": "{num_connections} connected",
+        "tooltip-format-connected": "{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}   {device_battery_percentage}%"
+    },
+    "clock": {
+	"interval": 1,
+        "format": " {:%I:%M:%S %p  -  󰃭 %d/%m}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+	"calendar": {
+		"mode": "month",
+		"format": {
+            "today"  : "<span color='red'>{}</span>"
+		}
+	}
+
+    },
+    "backlight": {
+        "format": "{icon} {percent}%",
+        "on-scroll-up": "",
+        "on-scroll-down": "",
+        "format-icons": [
+            "󰃞",
+            "󰃝",
+            "󰃟",
+            "󰃠"
+        ]
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon}",
+        "format-icons": [
+            " ",
+            " ",
+            " ",
+            " ",
+            " "
+        ]
+    },
+    "network": {
+	    "interval": 1,
+        "format-wifi": "  {essid} ({signalStrength}%)",
+        "format-ethernet": " {ipaddr}/{cidr}",
+        "tooltip-format": " {ifname} @ {ipaddr}",
+        "format-linked": " {ifname} (No IP)",
+        "format-disconnected": "⚠ Disconnected",
+        "format-alt": "{bandwidthDownBytes}"
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-bluetooth-muted": "  {icon}",
+        "format-muted": "",
+        "format-icons": {
+            "headphone": "󰋋",
+            "hands-free": "",
+            "headset": "",
+            "phone": "󰏲",
+            "portable": "󰏲",
+            "car": "",
+            "default": [
+                "",
+                "",
+                ""
+            ]
+        },
+        "on-click": "pavucontrol"
+    },
+    "custom/power": {
+        "format": "⏻ ",
+        "tooltip": false,
+        "on-click": "rofi -show power-menu -modi 'power-menu:~/.local/bin/rofi-power-menu --choices=lockscreen/logout/shutdown/reboot/' -theme-str 'window {width: 10em;} listview {lines: 4;}'"
+    }
+}
