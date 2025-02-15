@@ -46,7 +46,7 @@ git clone --bare https://github.com/govtx86/hyprland-dotfiles.git $HOME/.cfg
 ```
 Add the alias (in zsh shell)
 ```
-echo "alias dot='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'" >> ~/.zshrc
+echo "alias dot='/usr/bin/git --git-dir="$HOME/.cfg/" --work-tree="$HOME"'" >> ~/.zshrc
 ```
 Apply the dotfiles
 ```
@@ -143,7 +143,7 @@ gh auth login
 yay -S asusctl
 ```
 ```
-yay -S supergfxcrl
+yay -S supergfxctl
 ```
 ```
 sudo systemctl enable supergfxd
