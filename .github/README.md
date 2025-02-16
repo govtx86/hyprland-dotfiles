@@ -79,7 +79,7 @@ makepkg -si
 ### Essential Programs
 
 ```
-sudo pacman -S polkit-kde-agent xdg-desktop-portal-hyprland dunst waybar hyprpaper cliphist grim slurp swaylock playerctl pavucontrol brightnessctl ttf-firacode-nerd
+sudo pacman -S polkit-kde-agent xdg-desktop-portal-hyprland dunst waybar hyprpaper cliphist grim slurp swaylock playerctl pavucontrol brightnessctl ttf-firacode-nerd noto-fonts-emoji
 ```
 ```
 yay -S otf-font-awesome
@@ -167,7 +167,9 @@ STOP_CHARGE_THRESH_BAT0=80
 Restart tlp service
 
 ### Add windows to GRUB
-
+```
+sudo pacman -S os-prober
+```
 ```
 sudo nvim /etc/default/grub
 ```
