@@ -79,7 +79,7 @@ makepkg -si
 ### Essential Programs
 
 ```
-sudo pacman -S polkit-kde-agent xdg-desktop-portal-hyprland dunst waybar hyprpaper cliphist grim slurp swaylock playerctl pavucontrol brightnessctl ttf-firacode-nerd noto-fonts-emoji
+sudo pacman -S polkit-kde-agent xdg-desktop-portal-hyprland dunst waybar hyprpaper cliphist grim slurp swaylock playerctl pavucontrol brightnessctl ttf-firacode-nerd noto-fonts-emoji ttf-ubuntu-mono-nerd
 ```
 ```
 yay -S otf-font-awesome
