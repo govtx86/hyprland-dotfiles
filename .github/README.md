@@ -140,7 +140,7 @@ gh auth login
 ### ASUS control
 
 ```
-yay -S asusctl
+yay -S rog-control-center
 ```
 ```
 yay -S supergfxctl
