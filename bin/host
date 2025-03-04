@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "Hosting \"$(pwd)\""
+python -m http.server 8080
