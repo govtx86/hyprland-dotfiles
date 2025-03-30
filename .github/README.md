@@ -61,7 +61,7 @@ dot config --local status.showUntrackedFiles no
 
 ### Hyprland
 ```
-sudo pacman -S hyprland base-devel kitty dolphin rofi-wayland neovim firefox
+sudo pacman -S hyprland base-devel kitty nemo rofi-wayland neovim firefox rofi-emoji
 ```
 
 The configs are in *.config/hpyr/hyprland.conf*
@@ -83,6 +83,9 @@ sudo pacman -S polkit-kde-agent xdg-desktop-portal-hyprland dunst waybar hyprpap
 ```
 ```
 yay -S otf-font-awesome
+```
+```
+yay -S visual-studio-code-bin
 ```
 
 ### Headphone audio level
