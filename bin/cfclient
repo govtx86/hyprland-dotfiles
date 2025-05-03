@@ -1,0 +1,6 @@
+#!/bin/bash
+
+echo "Enter the url: "
+read url
+
+cloudflared access tcp --hostname $url --url 127.0.0.1:9900
