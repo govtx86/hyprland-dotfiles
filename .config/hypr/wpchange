@@ -1,7 +1,7 @@
 #!/bin/bash
 
 wp1="/home/govind/.config/wallpapers/mountain.jpg"
-wp2="/home/govind/.config/wallpapers/0xxx.jpg"
+wp2="/home/govind/.config/wallpapers/0123.jpg"
 
 loaded=$(hyprctl hyprpaper listloaded)
 echo $loaded
