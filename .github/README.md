@@ -15,9 +15,11 @@ nmcli device wifi connect <SSID> --ask
 ```
 sudo pacman -S reflector
 ```
+
 ```
 sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 ```
+
 ```
 sudo reflector --verbose --country 'India' --sort rate --save /etc/pacman.d/mirrorlist
 ```
@@ -25,41 +27,51 @@ sudo reflector --verbose --country 'India' --sort rate --save /etc/pacman.d/mirr
 ## ZSH setup
 
 Install zsh
+
 ```
 sudo pacman -S zsh
 ```
+
 Install oh-my-zsh
+
 ```
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
+
 ```
 git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
 ```
+
 ```
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 ```
 
-
 ### Clone the repo
+
 ```
 git clone --bare https://github.com/govtx86/hyprland-dotfiles.git $HOME/.cfg
 ```
+
 Add the alias (in zsh shell)
+
 ```
 echo "alias dot='/usr/bin/git --git-dir="$HOME/.cfg/" --work-tree="$HOME"'" >> ~/.zshrc
 ```
+
 Apply the dotfiles
+
 ```
 dot checkout -f
 ```
+
 ```
 dot config --local status.showUntrackedFiles no
 ```
 
-
 ## Programs
 
 ### Hyprland
+
 ```
 sudo pacman -S hyprland base-devel ghostty nemo rofi-wayland neovim firefox rofi-emoji
 ```
@@ -71,6 +83,7 @@ The configs are in *.config/hpyr/hyprland.conf*
 ```
 git clone https://aur.archlinux.org/yay-bin.git
 ```
+
 ```
 cd yay-bin
 makepkg -si
@@ -81,9 +94,11 @@ makepkg -si
 ```
 sudo pacman -S polkit-kde-agent xdg-desktop-portal-hyprland dunst waybar hyprpaper cliphist grim slurp swaylock playerctl pavucontrol brightnessctl ttf-firacode-nerd noto-fonts-emoji ttf-ubuntu-nerd
 ```
+
 ```
 yay -S otf-font-awesome
 ```
+
 ```
 yay -S visual-studio-code-bin
 ```
@@ -96,25 +111,29 @@ sudo pacman -S calf
 ```
 
 ### Additional Programs
+
 ```
 sudo pacman -S htop fastfetch
 ```
+
 ```
 yay -S cava
 ```
 
 Set gtk dark theme
+
 ```
 yay -S gnome-themes-extra adwaita-qt5-git numix-icon-theme-git
 gsettings set org.gnome.desktop.wm.preferences theme "Adwaita-dark"
 gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
 gsettings set org.gnome.desktop.interface icon-theme "Numix"
 ```
+
 ### Media apps
+
 ```
 sudo pacman -S vlc gwenview
 ```
-
 
 ### Bluetooth setup
 
@@ -123,18 +142,22 @@ sudo pacman -S blueman
 ```
 
 Start and enable bluetooth
+
 ```
 sudo systemctl start bluetooth.service
 sudo systemctl enable bluetooth.service
 ```
 
 ### Git setup
+
 ```
 git config --global user.name "username"
 git config --global user.email "email"
 git config --global init.defaultBranch main
 ```
+
 Github auth
+
 ```
 sudo pacman -S github-cli
 gh auth login
@@ -145,9 +168,11 @@ gh auth login
 ```
 yay -S rog-control-center
 ```
+
 ```
 yay -S supergfxctl
 ```
+
 ```
 sudo systemctl enable supergfxd
 sudo systemctl start supergfxd
@@ -159,27 +184,36 @@ supergfxctl --mode Hybrid
 ```
 sudo pacman -S tlp
 ```
+
 ```
 sudo systemctl enable tlp
 sudo systemctl start tlp
 ```
+
 Edit(sudo) /etc/tlp.conf and add
+
 ```
 STOP_CHARGE_THRESH_BAT0=80
 ```
+
 Restart tlp service
 
 ### Add windows to GRUB
+
 ```
 sudo pacman -S os-prober
 ```
+
 ```
 sudo nvim /etc/default/grub
 ```
+
 Set
+
 ```
 GRUB_DISABLE_OS_PROBER="false"
 ```
+
 ```
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
@@ -187,39 +221,15 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 ### Disable hibernation
 
 Fixed wifi disconnect on lid close
+
 ```
 sudo nvim /etc/systemd/logind.conf
 ```
+
 Set
+
 ```
 HandleLidSwitch=ignore
 HandleLidSwitchExternalPower=ignore
 HandleLidSwitchDocked=ignore
-```
-
-### Hotspot setup
-Make server to create separate interface for AP
-```
-sudo nvim create-virtual-interface.service
-```
-```
-[Unit]
-Description=Create virtual wireless interface
-Requires=sys-subsystem-net-devices-wlo1.device
-After=network.target
-After=sys-subsystem-net-devices-wlo1.device
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/iw dev wlo1 interface add wlo1_ap type managed addr "12:34:56:78:ab:ce"
-[Install]
-WantedBy=multi-user.target
-```
-Start and enable the service
-```
-sudo chmod a+x create-virtual-interface.service
-```
-```
-sudo systemctl daemon-reload
-sudo systemctl start lidbehaviour_override.service
-sudo systemctl enable lidbehaviour_override.service
 ```
