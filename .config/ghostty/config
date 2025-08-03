@@ -35,6 +35,8 @@
 background = 000000
 font-family = JetBrainsMono Nerd Font
 font-size = 13.0
+font-style-bold = Bold
+font-style = Bold
 resize-overlay = never
 theme = Aura
 adjust-cursor-thickness = 5
