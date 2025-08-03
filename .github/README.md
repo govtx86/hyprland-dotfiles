@@ -196,3 +196,30 @@ HandleLidSwitch=ignore
 HandleLidSwitchExternalPower=ignore
 HandleLidSwitchDocked=ignore
 ```
+
+### Hotspot setup
+Make server to create separate interface for AP
+```
+sudo nvim create-virtual-interface.service
+```
+```
+[Unit]
+Description=Create virtual wireless interface
+Requires=sys-subsystem-net-devices-wlo1.device
+After=network.target
+After=sys-subsystem-net-devices-wlo1.device
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/iw dev wlo1 interface add wlo1_ap type managed addr "12:34:56:78:ab:ce"
+[Install]
+WantedBy=multi-user.target
+```
+Start and enable the service
+```
+sudo chmod a+x create-virtual-interface.service
+```
+```
+sudo systemctl daemon-reload
+sudo systemctl start lidbehaviour_override.service
+sudo systemctl enable lidbehaviour_override.service
+```
