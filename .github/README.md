@@ -103,13 +103,6 @@ yay -S otf-font-awesome
 yay -S visual-studio-code-bin
 ```
 
-### Headphone audio level
-
-```
-sudo pacman -S easyeffects
-sudo pacman -S calf
-```
-
 ### Additional Programs
 
 ```
@@ -132,7 +125,7 @@ gsettings set org.gnome.desktop.interface icon-theme "Numix"
 ### Media apps
 
 ```
-sudo pacman -S vlc gwenview
+sudo pacman -S vlc vlc-plugins-all gwenview
 ```
 
 ### Bluetooth setup
