@@ -1,10 +1,10 @@
 #!/bin/bash
 
-if [ "$(dunstctl is-paused)" == "true" ]; then
-	dunstctl set-paused false
-	dunstify -t 2000 "Notifications Unpaused" -a "Notification"
+if [ "$(swaync-client -D)" == "true" ]; then
+	swaync-client -df
+	notify-send "Notifications Unpaused"
 else
-	dunstify -t 2000 "Notifications Paused" -a "Notification"
+	notify-send "Notifications Paused"
 	sleep 2
-	dunstctl set-paused true
+	swaync-client -dn
 fi
