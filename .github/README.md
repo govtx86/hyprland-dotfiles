@@ -76,7 +76,7 @@ dot config --local status.showUntrackedFiles no
 sudo pacman -S hyprland base-devel ghostty nemo rofi-wayland neovim firefox rofi-emoji
 ```
 
-The configs are in *.config/hpyr/hyprland.conf*
+The configs are in `.config/hpyr/hyprland.conf`
 
 ### Yay setup
 
@@ -92,7 +92,10 @@ makepkg -si
 ### Essential Programs
 
 ```
-sudo pacman -S polkit-kde-agent xdg-desktop-portal-hyprland dunst waybar hyprpaper cliphist grim slurp swaylock playerctl pavucontrol brightnessctl ttf-firacode-nerd noto-fonts-emoji ttf-ubuntu-nerd
+sudo pacman -S polkit-kde-agent sddm xdg-desktop-portal-hyprland dunst waybar hyprpaper cliphist grim slurp swaylock playerctl pavucontrol brightnessctl ttf-firacode-nerd noto-fonts-emoji ttf-ubuntu-nerd
+```
+```
+sudo systemctl enable sddm
 ```
 
 ```
@@ -117,6 +120,8 @@ Set gtk dark theme
 
 ```
 yay -S gnome-themes-extra adwaita-qt5-git numix-icon-theme-git
+```
+```
 gsettings set org.gnome.desktop.wm.preferences theme "Adwaita-dark"
 gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
 gsettings set org.gnome.desktop.interface icon-theme "Numix"
@@ -128,6 +133,14 @@ gsettings set org.gnome.desktop.interface icon-theme "Numix"
 sudo pacman -S vlc vlc-plugins-all gwenview
 ```
 
+### Disable recent files
+```
+dconf write /org/gnome/desktop/privacy/remember-recent-files false
+```
+```
+dconf write /org/cinnamon/desktop/privacy/remember-recent-files false
+```
+
 ### Bluetooth setup
 
 ```
@@ -135,11 +148,29 @@ sudo pacman -S blueman
 ```
 
 Start and enable bluetooth
+```
+sudo systemctl enable --now bluetooth.service
+```
+
+### Nvidia driver enable
+Enable DRM modeset by creating file `/etc/modprobe.d/nvidia.conf` containing:
+```
+options nvidia_drm modeset=1 fbdev=1
+```
+​
+Blacklist Nouveau drivers by creating file `/etc/modprobe.d/blacklist.conf` containing:
 
 ```
-sudo systemctl start bluetooth.service
-sudo systemctl enable bluetooth.service
+blacklist nouveau
+options nouveau modeset=0
 ```
+Install Linux headers
+```
+sudo pacman -S linux-headers
+```
+Then run `sudo mkinitcpio -P` and reboot.
+
+Verify with `lsmod | grep nvidia` and look for nvidia_drm and check with `nvidia-smi`.
 
 ### Git setup
 
