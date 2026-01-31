@@ -72,10 +72,6 @@ return {
       servers = {
         -- pyright will be automatically installed with mason and loaded with lspconfig
         pyright = {},
-        volar = {
-          filetypes = { "typescript", "vue", "javascript", "jsx", "tsx" },
-          root_dir = require("lspconfig.util").root_pattern("nuxt.config.ts"),
-        },
       },
     },
   },
