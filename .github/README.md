@@ -214,7 +214,7 @@ sudo systemctl enable tlp
 sudo systemctl start tlp
 ```
 
-Edit(sudo) /etc/tlp.conf and add
+Edit(sudo) `/etc/tlp.conf` and add
 
 ```
 STOP_CHARGE_THRESH_BAT0=80
@@ -256,4 +256,22 @@ Set
 HandleLidSwitch=ignore
 HandleLidSwitchExternalPower=ignore
 HandleLidSwitchDocked=ignore
+```
+
+### Fix mDNS
+
+```
+sudo pacman -S avahi nss-mdns
+```
+```
+sudo systemctl enable --now avahi-daemon
+```
+Edit `/etc/nsswitch.conf` with sudo
+Change the line:
+```
+hosts: mymachines resolve [!UNAVAIL=return] files myhostname dns
+```
+To:
+```
+hosts: mymachines resolve [!UNAVAIL=return] files mdns_minimal myhostname dns
 ```
