@@ -1,16 +1,36 @@
 #!/bin/bash
 
-wp1="/home/govind/.config/wallpapers/yeah.jpg"
-wp2="/home/govind/.config/wallpapers/0123.jpg"
+# Configuration – change these paths to your two wallpaper files
+WALLPAPER1="$HOME/.config/wallpapers/yeah.jpg"
+WALLPAPER2="$HOME/.config/wallpapers/for_my_govind_bro.jpg"
 
-loaded=$(hyprctl hyprpaper listloaded)
-echo $loaded
-if [ "$loaded" == $wp1 ]; then
-    echo $(hyprctl hyprpaper reload ,"$wp2")
-    echo $(hyprctl hyprpaper wallpaper "eDP-1,$wp2")
-    echo $(hyprctl hyprpaper unload ,"$wp1")
-else
-    echo $(hyprctl hyprpaper reload ,"$wp1")
-    echo $(hyprctl hyprpaper wallpaper "eDP-1,$wp1")
-    echo $(hyprctl hyprpaper unload ,"$wp2")
+# Monitor name (find yours with `hyprctl monitors`)
+MONITOR="eDP-1"
+
+# State file location
+STATE_FILE="$HOME/.cache/wallpaper-state"
+
+# Ensure state file exists with default index 0
+if [[ ! -f "$STATE_FILE" ]]; then
+    echo 0 > "$STATE_FILE"
 fi
+
+# Read current index (0 or 1)
+CURRENT=$(cat "$STATE_FILE")
+
+# Determine next wallpaper
+if [[ "$CURRENT" -eq 0 ]]; then
+    NEXT_WALL="$WALLPAPER2"
+    NEXT_INDEX=1
+else
+    NEXT_WALL="$WALLPAPER1"
+    NEXT_INDEX=0
+fi
+
+# Apply the wallpaper
+hyprctl hyprpaper wallpaper "$MONITOR,$NEXT_WALL"
+
+# Update state file
+echo "$NEXT_INDEX" > "$STATE_FILE"
+
+echo "Switched to: $NEXT_WALL"
