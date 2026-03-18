@@ -275,3 +275,29 @@ To:
 ```
 hosts: mymachines resolve [!UNAVAIL=return] files mdns_minimal myhostname dns
 ```
+### Setup Secure Boot
+```
+sudo pacman -S sbctl
+```
+```
+sbctl status
+```
+Make sure secure boot is in setup mode
+```
+sbctl create-keys
+```
+```
+sbctl enroll-keys -m
+```
+Sign all files using `sbctl sign -s` from the output:
+```
+sbctl verify
+```
+Setup Grub
+```
+sudo grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB --modules="tpm all_video boot btrfs cat chain configfile echo efifwsetup efinet ext2 fat font gettext gfxmenu gfxterm gfxterm_background gzio halt help hfsplus iso9660 jpeg keystatus loadenv loopback linux ls lsefi lsefimmap lsefisystab lssal memdisk minicmd normal ntfs part_apple part_msdos part_gpt password_pbkdf2 png probe reboot regexp search search_fs_uuid search_fs_file search_label sleep smbios squash4 test true video xfs zfs zfscrypt zfsinfo" --disable-shim-lock
+```
+```
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+```
+Check status to verify secure boot works
