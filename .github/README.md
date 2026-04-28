@@ -119,7 +119,7 @@ yay -S cava
 Set gtk dark theme
 
 ```
-yay -S gnome-themes-extra adwaita-qt5-git numix-icon-theme-git
+yay -S gnome-themes-extra-gtk2 adwaita-qt5-git adwaita-qt6-git numix-icon-theme-git
 ```
 ```
 gsettings set org.gnome.desktop.wm.preferences theme "Adwaita-dark"
