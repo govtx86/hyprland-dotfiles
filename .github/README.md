@@ -254,6 +254,7 @@ sudo nvim /etc/systemd/logind.conf
 Set
 
 ```
+HandlePowerKey=ignore
 HandleLidSwitch=ignore
 HandleLidSwitchExternalPower=ignore
 HandleLidSwitchDocked=ignore
