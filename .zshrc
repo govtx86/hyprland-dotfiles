@@ -4,6 +4,7 @@
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/go/bin
 
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -141,3 +142,8 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
