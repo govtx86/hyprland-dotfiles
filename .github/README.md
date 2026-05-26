@@ -73,7 +73,7 @@ dot config --local status.showUntrackedFiles no
 ### Hyprland
 
 ```
-sudo pacman -S hyprland base-devel ghostty nemo rofi-wayland neovim firefox rofi-emoji
+sudo pacman -S hyprland base-devel ghostty nemo rofi-wayland neovim firefox rofi-emoji wtype
 ```
 
 The configs are in `.config/hpyr/hyprland.conf`
