@@ -41,6 +41,8 @@ resize-overlay = never
 theme = Aura
 adjust-cursor-thickness = 5
 
+custom-shader = shaders/cursor_warp.glsl
+custom-shader = shaders/ripple_cursor.glsl
 #
 # # Empty values are used to reset config keys to default.
 # key =
