@@ -41,6 +41,13 @@ resize-overlay = never
 theme = Aura
 adjust-cursor-thickness = 5
 
+# Reduce internal padding to 0 (or a very small number)
+window-padding-x = 0
+window-padding-y = 0
+
+# Force the window to resize fluidly rather than snapping to character grids
+window-padding-balance = true
+
 custom-shader = shaders/cursor_warp.glsl
 custom-shader = shaders/ripple_cursor.glsl
 #
