@@ -234,7 +234,7 @@ sdl_height = 500
 
 gradient = 1
 gradient_count = 4
-gradient_color_1 = '#9d03fc'
+gradient_color_1 = '#836FFF'
 gradient_color_2 = '#030ffc'
 gradient_color_3 = '#03e3fc'
 gradient_color_4 = '#03fc66'
