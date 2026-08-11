@@ -276,13 +276,17 @@ hl.bind(mainMod .. " + SUPER_L",
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
 
+-- Brightness Control
+hl.bind(mainMod .. " + SHIFT + period", hl.dsp.exec_cmd("brightnessctl set 2%+"), { repeating = true })
+hl.bind(mainMod .. " + SHIFT + comma", hl.dsp.exec_cmd("brightnessctl set 2%-"), { repeating = true })
+
 -- Power Menu
 hl.bind(mainMod .. " + L",
     hl.dsp.exec_cmd(
-    [[rofi -show power-menu -modi 'power-menu:~/.local/bin/rofi-power-menu --choices=lockscreen/logout/shutdown/reboot/' -theme-str 'window {width: 10em;} listview {lines: 4;}']]))
+        [[rofi -show power-menu -modi 'power-menu:~/.local/bin/rofi-power-menu --choices=lockscreen/logout/shutdown/reboot/' -theme-str 'window {width: 10em;} listview {lines: 4;}']]))
 hl.bind("XF86PowerOff",
     hl.dsp.exec_cmd(
-    [[rofi -show power-menu -modi 'power-menu:~/.local/bin/rofi-power-menu --choices=lockscreen/logout/shutdown/reboot/' -theme-str 'window {width: 10em;} listview {lines: 4;}']]))
+        [[rofi -show power-menu -modi 'power-menu:~/.local/bin/rofi-power-menu --choices=lockscreen/logout/shutdown/reboot/' -theme-str 'window {width: 10em;} listview {lines: 4;}']]))
 hl.bind(mainMod .. " + code:60", hl.dsp.exec_cmd([[rofi -modi emoji -show emoji]]))
 
 -- Clipboard
