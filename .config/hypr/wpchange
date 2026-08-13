@@ -12,7 +12,7 @@ STATE_FILE="$HOME/.cache/wallpaper-state"
 
 # Ensure state file exists with default index 0
 if [[ ! -f "$STATE_FILE" ]]; then
-    echo 0 > "$STATE_FILE"
+  echo 0 >"$STATE_FILE"
 fi
 
 # Read current index (0 or 1)
@@ -20,17 +20,17 @@ CURRENT=$(cat "$STATE_FILE")
 
 # Determine next wallpaper
 if [[ "$CURRENT" -eq 0 ]]; then
-    NEXT_WALL="$WALLPAPER2"
-    NEXT_INDEX=1
+  NEXT_WALL="$WALLPAPER2"
+  NEXT_INDEX=1
 else
-    NEXT_WALL="$WALLPAPER1"
-    NEXT_INDEX=0
+  NEXT_WALL="$WALLPAPER1"
+  NEXT_INDEX=0
 fi
 
 # Apply the wallpaper
 hyprctl hyprpaper wallpaper "$MONITOR,$NEXT_WALL"
 
 # Update state file
-echo "$NEXT_INDEX" > "$STATE_FILE"
+echo "$NEXT_INDEX" >"$STATE_FILE"
 
 echo "Switched to: $NEXT_WALL"

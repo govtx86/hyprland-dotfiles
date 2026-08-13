@@ -279,6 +279,13 @@ hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
 -- Brightness Control
 hl.bind(mainMod .. " + SHIFT + period", hl.dsp.exec_cmd("brightnessctl set 2%+"), { repeating = true })
 hl.bind(mainMod .. " + SHIFT + comma", hl.dsp.exec_cmd("brightnessctl set 2%-"), { repeating = true })
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl set 5%+"), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 5%-"), { locked = true, repeating = true })
+
+-- Notification Control
+hl.bind(mainMod .. " + semicolon", hl.dsp.exec_cmd("swaync-client --hide-all"))
+hl.bind(mainMod .. " + SHIFT + semicolon", hl.dsp.exec_cmd("~/.config/hypr/notiftoggle"))
+hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -t"))
 
 -- Power Menu
 hl.bind(mainMod .. " + L",
@@ -352,9 +359,8 @@ hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ to
 hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
     { locked = true, repeating = true })
 hl.bind("XF86Launch3", hl.dsp.exec_cmd("playerctl play-pause"))
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { locked = true, repeating = true })
 hl.bind(mainMod .. " + SHIFT + I", hl.dsp.exec_cmd("~/.config/hypr/wpchange"))
+hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("~/bin/prf"))
 hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("playerctl --all-players pause"))
 
 -- Requires playerctl
