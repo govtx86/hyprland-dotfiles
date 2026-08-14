@@ -350,9 +350,9 @@ hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Laptop multimedia keys for volume and LCD brightness
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("pactl -- set-sink-volume 0 +5%"),
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd([[pactl -- set-sink-volume 0 +5% ; notify-send -a Volume "$(pactl get-sink-volume 0 | grep -o -m 1 -E [[:digit:]\]+% | head -1)" -t 700 -r 1]]),
     { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("pactl -- set-sink-volume 0 -5%"),
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd([[pactl -- set-sink-volume 0 -5% ; notify-send -a Volume "$(pactl get-sink-volume 0 | grep -o -m 1 -E [[:digit:]\]+% | head -1)" -t 700 -r 1]]),
     { locked = true, repeating = true })
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
     { locked = true, repeating = true })
