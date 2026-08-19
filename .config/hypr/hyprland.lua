@@ -307,7 +307,7 @@ hl.bind("CONTROL + Print", hl.dsp.exec_cmd([[grim "$HOME/Pictures/Screenshots/$(
 hl.bind("Print", hl.dsp.exec_cmd([[grim - | wl-copy]]))
 
 -- ALT tab behaviour
-hl.bind("SUPER + Tab", function()
+hl.bind("ALT + Tab", function()
     hl.dispatch(hl.dsp.window.cycle_next())
     hl.dispatch(hl.dsp.window.bring_to_top())
 end)
