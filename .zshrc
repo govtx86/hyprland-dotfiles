@@ -148,6 +148,7 @@ export NVM_DIR="$HOME/.config/nvm"
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
+export PATH=/home/govind/.cache/yay/texlive-full/pkg/texlive-full/opt/texlive/2026/bin/x86_64-linux:$PATH
+
 # opencode
 export PATH=/home/govind/.opencode/bin:$PATH
-export PATH=/home/govind/.cache/yay/texlive-full/pkg/texlive-full/opt/texlive/2026/bin/x86_64-linux:$PATH

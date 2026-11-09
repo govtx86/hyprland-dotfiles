@@ -73,7 +73,7 @@ dot config --local status.showUntrackedFiles no
 ### Hyprland
 
 ```
-sudo pacman -S hyprland base-devel ghostty nemo rofi-wayland neovim firefox rofi-emoji wtype
+sudo pacman -S hyprland base-devel ghostty nemo neovim firefox wtype
 ```
 
 The configs are in `.config/hpyr/hyprland.conf`
@@ -92,14 +92,14 @@ makepkg -si
 ### Essential Programs
 
 ```
-sudo pacman -S polkit-kde-agent sddm xdg-desktop-portal-hyprland dunst waybar hyprpaper cliphist grim slurp swaylock playerctl pavucontrol brightnessctl ttf-firacode-nerd noto-fonts-emoji ttf-ubuntu-nerd
+sudo pacman -S polkit-kde-agent ly xdg-desktop-portal-hyprland swaync waybar hyprpaper cliphist grim slurp swaylock playerctl pavucontrol brightnessctl ttf-firacode-nerd noto-fonts-emoji ttf-ubuntu-nerd
 ```
 ```
-sudo systemctl enable sddm
+sudo systemctl enable ly
 ```
 
 ```
-yay -S otf-font-awesome
+yay -S otf-font-awesome otter-launcher bemoji fsel-bin fzf
 ```
 
 ```
