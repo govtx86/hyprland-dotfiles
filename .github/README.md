@@ -73,10 +73,10 @@ dot config --local status.showUntrackedFiles no
 ### Hyprland
 
 ```
-sudo pacman -S git curl hyprland base-devel ghostty nemo rofi-wayland neovim firefox rofi-emoji wtype
+sudo pacman -S git curl hyprland base-devel ghostty nemo rofi-wayland neovim firefox rofi-emoji wtype hyprshutdown
 ```
 
-The configs are in `.config/hpyr/hyprland.lua`
+The configs are in `.config/hypr/hyprland.lua`
 
 ### Yay setup
 
@@ -92,8 +92,11 @@ makepkg -si
 ### Essential Programs
 
 ```
-sudo pacman -S polkit-kde-agent ly xdg-desktop-portal-hyprland swaync waybar hyprpaper cliphist grim slurp swaylock playerctl pavucontrol brightnessctl ttf-firacode-nerd noto-fonts-emoji ttf-ubuntu-nerd libnotify wl-clipboard easyeffects otf-font-awesome
+sudo pacman -S polkit-kde-agent ly xdg-desktop-portal-hyprland swaync waybar hyprpaper cliphist grim slurp swaylock playerctl pavucontrol brightnessctl ttf-firacode-nerd noto-fonts-emoji ttf-ubuntu-nerd libnotify wl-clipboard easyeffects otf-font-awesome nvidia-open-dkms nvidia-utils qt5-wayland qt6-wayland xdg-desktop-portal-gtk intel-ucode mesa vulkan-intel intel-media-driver
 ```
+```
+```
+sudo pacman -S linux-headers
 ```
 sudo systemctl enable ly@tty2.service
 ```
@@ -155,26 +158,18 @@ sudo systemctl enable --now bluetooth.service
 
 ### Nvidia driver enable
 
-Install drivers
-```
-sudo pacman -S nvidia-open-dkms nvidia-utils
-```
 
 Enable DRM modeset by creating file `/etc/modprobe.d/nvidia.conf` containing:
 ```
 options nvidia_drm modeset=1 fbdev=1
 ```
-​
 Blacklist Nouveau drivers by creating file `/etc/modprobe.d/blacklist.conf` containing:
 
 ```
 blacklist nouveau
 options nouveau modeset=0
 ```
-Install Linux headers
-```
-sudo pacman -S linux-headers
-```
+
 Then run `sudo mkinitcpio -P` and reboot.
 
 Verify with `lsmod | grep nvidia` and look for nvidia_drm and check with `nvidia-smi`.
