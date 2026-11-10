@@ -40,11 +40,11 @@ icons[cancel]="\Uf0156"
 declare -A actions
 actions[lockscreen]="swaylock -f --color 1e1e2eFF"
 #actions[switchuser]="???"
-actions[logout]="command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"
+actions[logout]="hyprshutdown --vt 2"
 actions[suspend]="systemctl suspend"
 actions[hibernate]="systemctl hibernate"
-actions[reboot]="reboot"
-actions[shutdown]="systemctl poweroff"
+actions[reboot]="hyprshutdown -t 'Restarting...' --post-cmd 'reboot'"
+actions[shutdown]="hyprshutdown -t 'Shutting down...' --post-cmd 'shutdown -P 0'"
 
 # By default, ask for confirmation for actions that are irreversible
 confirmations=(reboot shutdown logout)
@@ -249,7 +249,7 @@ else
         echo "Selected: $entry" >&2
       else
         # Perform the action
-        ${actions[$entry]}
+        setsid -f bash -c "${actions[$entry]}" >/dev/null 2>&1 </dev/null
       fi
       exit 0
     fi

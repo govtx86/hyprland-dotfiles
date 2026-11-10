@@ -35,12 +35,12 @@ local menu = "rofi --show drun"
 -- Or execute your favorite apps at launch like this:
 --
 hl.on("hyprland.start", function()
-    hl.exec_cmd("waybar & hyprpaper & swaync")
-    hl.exec_cmd("easyeffects --gapplication-service")
-    hl.exec_cmd("wl-paste --type text --watch cliphist store")
-    hl.exec_cmd("wl-paste --type image --watch cliphist")
-    hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
-    hl.exec_cmd("/usr/lib/polkit-kde-authentication-agent-1")
+	hl.exec_cmd("waybar & hyprpaper & swaync")
+	hl.exec_cmd("easyeffects --gapplication-service")
+	hl.exec_cmd("wl-paste --type text --watch cliphist store")
+	hl.exec_cmd("wl-paste --type image --watch cliphist store")
+	hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
+	hl.exec_cmd("/usr/lib/polkit-kde-authentication-agent-1")
 end)
 
 -------------------------------
@@ -54,6 +54,7 @@ hl.env("HYPRCURSOR_SIZE", "24")
 -- hl.env("LIBVA_DRIVER_NAME", "nvidia")
 -- hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
 -- hl.env("AQ_DRM_DEVICES", "/dev/dri/by-path/pci-0000:00:02.0-card:/dev/dri/by-path/pci-0000:01:00.0-card")
+hl.env("AQ_DRM_DEVICES", os.getenv("HOME") .. "/.config/hypr/card-igpu")
 hl.env("GTK_THEME", "Adwaita:dark")
 hl.env("GTK2_RC_FILES", "/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc")
 hl.env("QT_STYLE_OVERRIDE", "Adwaita-Dark")

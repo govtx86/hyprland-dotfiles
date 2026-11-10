@@ -38,7 +38,7 @@ font-size = 13.0
 font-style-bold = Bold
 font-style = Bold
 resize-overlay = never
-theme = Aura
+theme = Aura Dark
 adjust-cursor-thickness = 5
 
 # Reduce internal padding to 0 (or a very small number)

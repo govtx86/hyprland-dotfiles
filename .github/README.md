@@ -73,10 +73,10 @@ dot config --local status.showUntrackedFiles no
 ### Hyprland
 
 ```
-sudo pacman -S hyprland base-devel ghostty nemo rofi-wayland neovim firefox rofi-emoji wtype
+sudo pacman -S git curl hyprland base-devel ghostty nemo rofi-wayland neovim firefox rofi-emoji wtype
 ```
 
-The configs are in `.config/hpyr/hyprland.conf`
+The configs are in `.config/hpyr/hyprland.lua`
 
 ### Yay setup
 
@@ -92,18 +92,18 @@ makepkg -si
 ### Essential Programs
 
 ```
-sudo pacman -S polkit-kde-agent ly xdg-desktop-portal-hyprland swaync waybar hyprpaper cliphist grim slurp swaylock playerctl pavucontrol brightnessctl ttf-firacode-nerd noto-fonts-emoji ttf-ubuntu-nerd
+sudo pacman -S polkit-kde-agent ly xdg-desktop-portal-hyprland swaync waybar hyprpaper cliphist grim slurp swaylock playerctl pavucontrol brightnessctl ttf-firacode-nerd noto-fonts-emoji ttf-ubuntu-nerd libnotify wl-clipboard easyeffects otf-font-awesome
 ```
 ```
-sudo systemctl enable ly
-```
-
-```
-yay -S otf-font-awesome
+sudo systemctl enable ly@tty2.service
 ```
 
 ```
 yay -S visual-studio-code-bin
+```
+
+```
+mkdir -p ~/Pictures/Screenshots
 ```
 
 ### Additional Programs
@@ -154,6 +154,12 @@ sudo systemctl enable --now bluetooth.service
 ```
 
 ### Nvidia driver enable
+
+Install drivers
+```
+sudo pacman -S nvidia-open-dkms nvidia-utils
+```
+
 Enable DRM modeset by creating file `/etc/modprobe.d/nvidia.conf` containing:
 ```
 options nvidia_drm modeset=1 fbdev=1
@@ -172,6 +178,58 @@ sudo pacman -S linux-headers
 Then run `sudo mkinitcpio -P` and reboot.
 
 Verify with `lsmod | grep nvidia` and look for nvidia_drm and check with `nvidia-smi`.
+
+
+### Disable nvidia gpu when not active
+
+```
+sudo pacman -S --needed nvidia-prime
+```
+Create the following files
+
+`system/nvidia-pm.conf`
+```
+options nvidia NVreg_DynamicPowerManagement=0x02
+```
+
+`system/80-nvidia-pm.rules`
+```
+ACTION=="bind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030000", TEST=="power/control", ATTR{power/control}="auto"
+ACTION=="bind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030200", TEST=="power/control", ATTR{power/control}="auto"
+ACTION=="unbind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030000", TEST=="power/control", ATTR{power/control}="on"
+ACTION=="unbind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030200", TEST=="power/control", ATTR{power/control}="on"
+ACTION=="add|bind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x040300", ATTR{power/control}="auto"
+```
+
+Run the following command after creating the above files in the same folder
+```
+sudo install -m 644 nvidia-pm.conf /etc/modprobe.d/nvidia-pm.conf
+sudo install -m 644 80-nvidia-pm.rules /etc/udev/rules.d/80-nvidia-pm.rules
+```
+
+
+`/etc/environment`
+```
+AQ_DRM_DEVICES=/dev/dri/by-path/pci-0000:00:02.0-card
+__EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/50_mesa.json
+__GLX_VENDOR_LIBRARY_NAME=mesa
+```
+
+Run the following commands
+```
+sudo systemctl disable --now nvidia-powerd 2>/dev/null || true
+sudo systemctl mask nvidia-powerd
+sudo udevadm control --reload
+sudo mkinitcpio -P
+```
+
+`reboot` to finish setup.
+
+Verify using the following
+```
+cat /sys/bus/pci/devices/0000:01:00.0/power/runtime_status
+cat /sys/bus/pci/devices/0000:01:00.1/power/runtime_status
+```
 
 ### Git setup
 
@@ -275,7 +333,7 @@ hosts: mymachines resolve [!UNAVAIL=return] files myhostname dns
 ```
 To:
 ```
-hosts: mymachines resolve [!UNAVAIL=return] files mdns_minimal myhostname dns
+hosts: mymachines mdns_minimal resolve [!UNAVAIL=return] files myhostname dns
 ```
 ### Setup Secure Boot
 ```
