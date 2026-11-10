@@ -2,7 +2,7 @@
 
 ## Screenshots
 
-![Screenshot 1](Screenshots/sshot1.png)
+![Screenshot 1](Screenshots/sshot2.png)
 
 ## Wifi connect
 
