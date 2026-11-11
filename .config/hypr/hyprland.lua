@@ -35,7 +35,7 @@ local menu = "rofi --show drun"
 -- Or execute your favorite apps at launch like this:
 --
 hl.on("hyprland.start", function()
-	hl.exec_cmd("waybar & hyprpaper & swaync")
+	hl.exec_cmd("waybar & hyprpaper & GSK_RENDERER=cairo swaync")
 	hl.exec_cmd("easyeffects --gapplication-service")
 	hl.exec_cmd("wl-paste --type text --watch cliphist store")
 	hl.exec_cmd("wl-paste --type image --watch cliphist store")
