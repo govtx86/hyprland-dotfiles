@@ -94,9 +94,10 @@ makepkg -si
 ```
 sudo pacman -S polkit-kde-agent ly xdg-desktop-portal-hyprland swaync waybar hyprpaper cliphist grim slurp swaylock playerctl pavucontrol brightnessctl ttf-firacode-nerd noto-fonts-emoji ttf-ubuntu-nerd libnotify wl-clipboard easyeffects otf-font-awesome nvidia-open-dkms nvidia-utils qt5-wayland qt6-wayland xdg-desktop-portal-gtk intel-ucode mesa vulkan-intel intel-media-driver
 ```
-```
+
 ```
 sudo pacman -S linux-headers
+```
 ```
 sudo systemctl enable ly@tty2.service
 ```
